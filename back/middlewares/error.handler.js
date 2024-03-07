@@ -1,11 +1,24 @@
-function logErrors(err, req, res, next){
+/**
+ * Errors logger on console
+ * @param {*} err 
+ * @param {*} _req 
+ * @param {*} _res 
+ * @param {*} next 
+ */
+function logErrors(err, _req, _res, next){
   console.log('🤖 > logErrors')
   console.error(err)
-  // continues to following middle execution
   next(err)
 }
 
-function errorHandler(err, req, res, next){
+/**
+ * Handle 500 app errors
+ * @param {*} err 
+ * @param {*} _req 
+ * @param {*} res 
+ * @param {*} _next 
+ */
+function errorHandler(err, _req, res, _next){
   console.log('🤖 > errorHandler')
   res.status(500).json({
     message: err.message,
@@ -13,7 +26,14 @@ function errorHandler(err, req, res, next){
   });
 }
 
-function boomErrorHandler(err, req, res, next){
+/**
+ * Handle boom lib errors
+ * @param {*} err 
+ * @param {*} _req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+function boomErrorHandler(err, _req, res, next){
   console.log('🤖 > boomErrorHandler')
   if(err.isBoom){
     const { output } = err;
