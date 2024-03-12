@@ -19,7 +19,7 @@ class TaskService {
   async show(id) {
     const data = await models.Task.findByPk(id);
     if(!data){
-      throw boom.notFound()
+      throw boom.notFound();
     }
     return data;
   }
@@ -42,7 +42,6 @@ class TaskService {
    */
   async update(id, changes) {
     const record = await models.Task.findByPk(id)
-    console.log(record)
     if(!record){
       throw boom.notFound()
     }
@@ -61,7 +60,7 @@ class TaskService {
       throw boom.notFound()
     }
     await record.destroy();
-    return { message: 'record delete it!', id: id }
+    return { message: 'record delete it!', id: id };
   }
 }
 

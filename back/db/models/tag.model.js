@@ -36,7 +36,7 @@ class Tag extends Model {
       sequelize,
       tableName: TABLE_NAME,
       modelName: 'Tag',
-      timestamps: true
+      timestamps: false
     }
   }
 }
