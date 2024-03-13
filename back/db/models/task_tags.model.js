@@ -10,7 +10,7 @@ const TaskTagsSchema = {
     primaryKey: true,
     type: DataTypes.INTEGER
   },
-  tag_id: {
+  tagId: {
     field: 'tag_id',
     allowNull: false,
     type: DataTypes.INTEGER,
@@ -21,7 +21,7 @@ const TaskTagsSchema = {
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
   },
-  task_id: {
+  taskId: {
     field: 'task_id',
     allowNull: false,
     type: DataTypes.INTEGER,
@@ -35,18 +35,12 @@ const TaskTagsSchema = {
 }
 
 class TaskTag extends Model {
-
-  static associate(models){
-    this.belongsTo(models.Tag, { as: 'tag' });
-    this.belongsTo(models.Task, { as: 'task' });
-  }
-
   static config(sequelize){
     return{
       sequelize,
       tableName: TABLE_NAME,
       modelName: 'TaskTag',
-      timestamps: true
+      timestamps: false
     }
   }
 }

@@ -17,7 +17,9 @@ class TaskService {
    * @returns {object}
    */
   async show(id) {
-    const data = await models.Task.findByPk(id);
+    const data = await models.Task.findByPk(id, {
+      include: ['tags']
+    });
     if(!data){
       throw boom.notFound();
     }

@@ -19,6 +19,14 @@ const TaskSchema = {
 }
 
 class Task extends Model {
+  static associate(models){
+    this.belongsToMany(models.Tag,{
+      as: 'tags',
+      through: models.TaskTag,
+      foreignKey: 'taskId',
+      otherKey: 'tagId'
+    })
+  }
   
   static config(sequelize){
     return{

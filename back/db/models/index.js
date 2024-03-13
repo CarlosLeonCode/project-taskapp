@@ -8,8 +8,7 @@ function setupModels(sequelize){
   TaskTag.init(TaskTagsSchema, TaskTag.config(sequelize));
 
 
-  Tag.associate(sequelize.models);
-  TaskTag.associate(sequelize.models)
+  Task.associate(sequelize.models)
 }
 
 module.exports = setupModels;

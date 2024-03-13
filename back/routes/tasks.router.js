@@ -1,13 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const TaskService = require('../services/task.service');
-const Task = new TaskService();
 const schemasHandler = require('../middlewares/schemas.handler');
+const TaskTagService = require('../services/task_tags.service');
 
 // schemas
 const { baseTaskSchema, pkTaskSchema } = require('../db/schemas/task.schema')
 
-router.get('/', async(req, res, next) => {
+// instances
+const TaskTag = new TaskTagService();
+const Task = new TaskService();
+
+router.get('/', async(_req, res, next) => {
   try{
     const tasks = await Task.all();
     res.json(tasks);
@@ -69,5 +73,15 @@ router.delete('/:id',
     }
   }
 )
+
+router.post('/:id/add-tag', async(req, res, next) => {
+  try {
+    const { body } = req;
+    const response = await TaskTag.addTag(body);
+    res.status(201).json(response);
+  } catch (err) {
+    next(err)
+  }
+})
 
 module.exports = router;

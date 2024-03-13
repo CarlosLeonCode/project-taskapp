@@ -2,7 +2,6 @@ const { models } = require('../libs/sequelize');
 const boom = require('@hapi/boom');
 
 class TagService {
-
   async all(){
     const data = await models.Tag.findAll();
     return data;

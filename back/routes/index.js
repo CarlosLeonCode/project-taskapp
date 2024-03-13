@@ -6,7 +6,7 @@ function routerApi(app){
   const router = express.Router();
   // namespace
   app.use('/api/v1', router);
-
+  // routes
   router.use('/tasks', tasksRouter)
   router.use('/tags', tagsRouter)
 }

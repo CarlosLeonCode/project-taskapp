@@ -24,13 +24,6 @@ const TagSchema = {
 
 class Tag extends Model {
 
-  static associate(models){
-    this.hasMany(models.TaskTag, {
-      as: 'task_tags',
-      foreignKey: 'tag_id'
-    })
-  }
-
   static config(sequelize){
     return{
       sequelize,

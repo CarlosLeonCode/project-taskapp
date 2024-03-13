@@ -11,6 +11,7 @@ const baseTaskSchema = Joi.object({
   description: description.required(),
 })
 
+// Works to validate ids
 const pkTaskSchema = Joi.object({
   id: id.required(),
 })
