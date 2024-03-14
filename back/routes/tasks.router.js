@@ -6,6 +6,7 @@ const TaskTagService = require('../services/task_tags.service');
 
 // schemas
 const { baseTaskSchema, pkTaskSchema } = require('../db/schemas/task.schema')
+const { baseTaskTagSchema } = require('../db/schemas/task_tag.schema')
 
 // instances
 const TaskTag = new TaskTagService();
@@ -74,14 +75,17 @@ router.delete('/:id',
   }
 )
 
-router.post('/:id/add-tag', async(req, res, next) => {
-  try {
-    const { body } = req;
-    const response = await TaskTag.addTag(body);
-    res.status(201).json(response);
-  } catch (err) {
-    next(err)
+router.post('/:id/add-tag', 
+  schemasHandler(baseTaskTagSchema, 'body'),
+  async(req, res, next) => {
+    try {
+      const { body } = req;
+      const response = await TaskTag.addTag(body);
+      res.status(201).json(response);
+    } catch (err) {
+      next(err)
+    }
   }
-})
+)
 
 module.exports = router;
